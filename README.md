@@ -1,4 +1,4 @@
-vz project template.
+# vz project template.
 
 This is a typescript+vue3+vite project template for abp (as backend).
 
@@ -23,7 +23,7 @@ npm run build:prod    # build production
 
 See `src/styles/element/index.scss`.
 
-# Features
+## Features
 
 - [x] [vue3.0](https://cn.vuejs.org)
 - [x] [vite](https://cn.vitejs.dev)
@@ -57,13 +57,13 @@ See `src/styles/element/index.scss`.
 - [x] [unplugin-icons](https://github.com/unplugin/unplugin-icons)
 - [x] jsx/tsx use [vuejs/babel-plugin-jsx](https://github.com/vuejs/babel-plugin-jsx) through [vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
 
-# Folder Structure
+## Folder Structure
 
 ```bash
 src/
 ├── api/        # nswag 生成 api 代理到该目录
 ├── components/ # 全局组件（自动注册）
-├── composables/# 自定义组合函数：基于 vue3.0 带状态的可复用逻辑封装
+├── composables/ # 自定义组合函数：基于 vue3.0 带状态的可复用逻辑封装
 ├── directives/ # 自定义指令（自动注册）
 ├── layouts/    # 布局组件，详见 vite-plugin-vue-layouts
 ├── locales/    # 本项目静态的多语言文件
@@ -83,7 +83,7 @@ In English:
 src/
 ├── api/        # nswag generate target
 ├── components/ # global components (will auto import)
-├── composables/# functions
+├── composables/ # functions
 ├── directives/ # custom directives (will auto register)
 ├── layouts/    # see vite-plugin-vue-layouts
 ├── locales/    # static languages file
@@ -97,7 +97,7 @@ src/
 
 ```
 
-# Remark
+## Remark
 
 Base on [element-plus-vite-starter](https://github.com/element-plus/element-plus-vite-starter)
 
