@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { App } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus/es'
-import { title } from 'process'
+import { ElMessageBox } from 'element-plus/es'
 
 export const install: any = (app: App<Element>) => {
   axios.defaults.baseURL = import.meta.env.VITE_API_BASE
@@ -53,9 +52,9 @@ export const install: any = (app: App<Element>) => {
         // TODO: 优先处理验证400
         ElMessageBox.alert(
           res.error?.details ??
-            res.error?.message ??
-            res.error?.code ??
-            'Request Error',
+          res.error?.message ??
+          res.error?.code ??
+          'Request Error',
           res.error?.message,
           {
             confirmButtonText: 'OK',
@@ -70,9 +69,9 @@ export const install: any = (app: App<Element>) => {
         if (res?.error && import.meta.env.DEV) {
           ElMessageBox.alert(
             res.error?.details ??
-              res.error?.message ??
-              res.error?.code ??
-              'Request Error',
+            res.error?.message ??
+            res.error?.code ??
+            'Request Error',
             res.error?.message,
             {
               confirmButtonText: 'OK',

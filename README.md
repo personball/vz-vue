@@ -57,6 +57,9 @@ See `src/styles/element/index.scss`.
 - [x] [unplugin-icons](https://github.com/unplugin/unplugin-icons)
 - [x] jsx/tsx use [vuejs/babel-plugin-jsx](https://github.com/vuejs/babel-plugin-jsx) through [vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
 
+**注意**  
+受限于 `@formily/element-plus@1.1.0` 依赖于 `element-plus@^2.4.0`, 不要升级后者。
+
 ## Folder Structure
 
 ```bash

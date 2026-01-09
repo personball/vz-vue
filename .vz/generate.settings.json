@@ -26,6 +26,7 @@
         "type": "JsonFile",
         "defaultValue": "./swagger.json"
       }
-    ]
+    ],
+    "output": "./src/routes/tmp/"
   }
 ]

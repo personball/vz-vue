@@ -1,22 +1,17 @@
 <template>
-  <ListPage
-    ref="list"
-    :searchFormSchema="searchFormSchema"
-    :listColumns="listColumns"
-    @queryList="getData"
-  >
+  <ListPage ref="list" :searchFormSchema="searchFormSchema" :listColumns="listColumns" @queryList="getData">
     <template #listActions>
       <el-button type="primary" @click="showAdd()">{{
         t('common.create')
-      }}</el-button>
+        }}</el-button>
     </template>
     <template #columnActions="{ row }">
       <el-button @click="showEdit(row)" type="primary">{{
         t('common.edit')
-      }}</el-button>
+        }}</el-button>
       <el-button @click="showDetail(row)" type="success">{{
         t('common.detail')
-      }}</el-button>
+        }}</el-button>
       <el-popconfirm :title="t('common.confirmDelete')" @confirm="del(row)">
         <template #reference>
           <el-button type="danger">{{ t('common.delete') }}</el-button>
@@ -24,13 +19,8 @@
       </el-popconfirm>
     </template>
   </ListPage>
-  <CreateOrEditSysUser
-    v-if="openDialog"
-    v-model="openDialog"
-    :mode="dialogMode"
-    :data="data"
-    @submit-success="list.reload()"
-  >
+  <CreateOrEditSysUser v-if="openDialog" v-model="openDialog" :mode="dialogMode" :data="data"
+    @submit-success="list.reload()">
   </CreateOrEditSysUser>
 </template>
 
@@ -40,7 +30,7 @@ import { IdentityUserDto, UserServiceProxy } from '~/api/ServiceProxies'
 import type { QueryListHander } from '~/components/pages/types'
 import CreateOrEditSysUser from './__CreateOrEdit.vue'
 import dayjs from 'dayjs'
-import { ElTooltip } from 'element-plus/es'
+import { ElTooltip, ElTag } from 'element-plus/es'
 
 const { t } = useI18n()
 const list = ref()

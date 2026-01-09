@@ -38,6 +38,7 @@
     "edit": "Edit",
     "detail": "Detail",
     "delete": "Del",
+    "isActive": "IsActive",
     "columnActions": "Actions",
     "confirmDelete": "Are you sure to delete this?",
     "creationTime": "Creation Time"
