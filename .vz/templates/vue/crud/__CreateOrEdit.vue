@@ -12,24 +12,7 @@
 {{~ tag=api.tags[0] ~}}
 {{~ tag ~}}
 
-{{~# for detail form schema and api ~}}
-{{~ getApi=swagger.paths[path+"/{id}"].get ~}}
-{{~ if getApi!=null ~}}
-get detail:
-{{ getApi }}
-{{~end~}}
 
-{{~# for edit form schema and api~}}
-{{~ putApi=swagger.paths[path+"/{id}"].put ~}}
-{{~ if putApi!=null ~}}
-put single:
-{{ putApi.requestBody.content["application/json"].schema["$ref"]}}
-
-    {{~for p in putApi.parameters~}}
-    {{p}}
-    {{~end~}}
-
-{{~end~}}
 -->
 <template>
   <el-dialog
@@ -60,7 +43,7 @@ import { createForm } from '@formily/core'
 import { Form, FormItem, Input, Select, Submit, Switch } from '@formily/element-plus'
 import { ISchema, createSchemaField } from '@formily/vue'
 import { ElMessage } from 'element-plus/es'
-import { {{requestType}}, {{tag}}UpdateDto, {{tag}}ServiceProxy } from '~/api/ServiceProxies'
+import { {{requestType}}, Update{{tag}}Dto, {{tag}}ServiceProxy } from '~/api/ServiceProxies'
 
 const { t } = useI18n()
 
@@ -154,9 +137,9 @@ const onSubmit = async (value: any) => {
 
     const client = new {{tag}}ServiceProxy(undefined, axios);
     if (props.mode === 'create') {
-        await client.{{tag|pluralize|string.downcase}}POST({{requestType}}.fromJS(value))
+        await client.create({{requestType}}.fromJS(value))
     } else {
-        await client.{{tag|pluralize|string.downcase}}PUT(props.data.id, {{tag}}UpdateDto.fromJS(value))
+        await client.update(props.data.id, Update{{tag}}Dto.fromJS(value))
     }
 
     ElMessage.success(t('common.submitSuccess'))
