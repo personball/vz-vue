@@ -1,17 +1,7 @@
 <template>
-  <el-dialog
-    v-model="show"
-    width="600px"
-    destroy-on-close
-    lock-scroll
-    draggable
-    top="0"
-    :close-on-click-modal="false"
-  >
+  <el-dialog v-model="show" width="600px" destroy-on-close lock-scroll draggable top="0" :close-on-click-modal="false">
     <template #header>
-      <div
-        class="flex justify-between items-center h-54px pl-15px pr-15px relative"
-      >
+      <div class="flex justify-between items-center h-54px pl-15px pr-15px relative">
         {{ t('common.' + mode) }}
       </div>
     </template>
@@ -125,9 +115,9 @@ const schema: ISchema = {
 const onSubmit = async (value: any) => {
   const client = new RoleServiceProxy(undefined, axios)
   if (props.mode === 'create') {
-    await client.rolesPOST(IdentityRoleCreateDto.fromJS(value))
+    await client.create(IdentityRoleCreateDto.fromJS(value))
   } else {
-    await client.rolesPUT(props.data.id, IdentityRoleUpdateDto.fromJS(value))
+    await client.update(props.data.id, IdentityRoleUpdateDto.fromJS(value))
   }
 
   ElMessage.success(t('common.submitSuccess'))

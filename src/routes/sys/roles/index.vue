@@ -1,10 +1,5 @@
 <template>
-  <ListPage
-    ref="list"
-    :searchFormSchema="searchFormSchema"
-    :listColumns="listColumns"
-    @queryList="getData"
-  >
+  <ListPage ref="list" :searchFormSchema="searchFormSchema" :listColumns="listColumns" @queryList="getData">
     <template #listActions>
       <el-button type="primary" @click="showAdd()">{{
         t('common.create')
@@ -17,24 +12,15 @@
       <el-button @click="showDetail(row)" type="success">{{
         t('common.detail')
       }}</el-button>
-      <el-popconfirm
-        v-if="!row.isStatic"
-        :title="t('common.confirmDelete')"
-        @confirm="del(row)"
-      >
+      <el-popconfirm v-if="!row.isStatic" :title="t('common.confirmDelete')" @confirm="del(row)">
         <template #reference>
           <el-button type="danger">{{ t('common.delete') }}</el-button>
         </template>
       </el-popconfirm>
     </template>
   </ListPage>
-  <CreateOrEditSysRole
-    v-if="openDialog"
-    v-model="openDialog"
-    :mode="dialogMode"
-    :data="data"
-    @submit-success="list.reload()"
-  >
+  <CreateOrEditSysRole v-if="openDialog" v-model="openDialog" :mode="dialogMode" :data="data"
+    @submit-success="list.reload()">
   </CreateOrEditSysRole>
 </template>
 
@@ -121,7 +107,7 @@ const getData: QueryListHander<IdentityRoleDto> = async ({
   maxResultCount,
   updateList
 }) => {
-  const { totalCount, items } = await client.rolesGET(
+  const { totalCount, items } = await client.getList(
     queryForm.filter,
     '',
     unref(skipCount),
@@ -152,8 +138,7 @@ const showDetail = (row: any) => {
 }
 
 const del = async (row: any) => {
-  const client = new RoleServiceProxy(undefined, axios)
-  await client.rolesDELETE(row.id)
+  await client.delete(row.id)
   list.value.reload()
 }
 </script>

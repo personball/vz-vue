@@ -1,10 +1,5 @@
 <template>
-  <ListPage
-    ref="list"
-    :searchFormSchema="searchFormSchema"
-    :listColumns="listColumns"
-    @queryList="getData"
-  >
+  <ListPage ref="list" :searchFormSchema="searchFormSchema" :listColumns="listColumns" @queryList="getData">
     <template #listActions>
       <el-button type="primary" @click="showAdd()">{{
         t('common.create')
@@ -24,13 +19,8 @@
       </el-popconfirm>
     </template>
   </ListPage>
-  <CreateOrEditSysTenant
-    v-if="openDialog"
-    v-model="openDialog"
-    :mode="dialogMode"
-    :data="data"
-    @submit-success="list.reload()"
-  >
+  <CreateOrEditSysTenant v-if="openDialog" v-model="openDialog" :mode="dialogMode" :data="data"
+    @submit-success="list.reload()">
   </CreateOrEditSysTenant>
 </template>
 
@@ -82,7 +72,7 @@ const getData: QueryListHander<TenantDto> = async ({
   maxResultCount,
   updateList
 }) => {
-  const { totalCount, items } = await client.tenantsGET2(
+  const { totalCount, items } = await client.getList(
     queryForm.filter,
     '',
     unref(skipCount),
@@ -113,8 +103,7 @@ const showDetail = (row: any) => {
 }
 
 const del = async (row: any) => {
-  const client = new TenantServiceProxy(undefined, axios)
-  await client.tenantsDELETE(row.id)
+  await client.delete(row.id)
   list.value.reload()
 }
 </script>

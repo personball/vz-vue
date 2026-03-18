@@ -1,17 +1,7 @@
 <template>
-  <ElDialog
-    v-model="show"
-    width="500px"
-    destroy-on-close
-    lock-scroll
-    draggable
-    top="0"
-    :close-on-click-modal="false"
-  >
+  <ElDialog v-model="show" width="500px" destroy-on-close lock-scroll draggable top="0" :close-on-click-modal="false">
     <template #header="{ close }">
-      <div
-        class="flex justify-between items-center h-54px pl-15px pr-15px relative"
-      >
+      <div class="flex justify-between items-center h-54px pl-15px pr-15px relative">
         {{ t('common.editProfile') }}
         <!-- <div class="h-54px flex justify-between items-center absolute top-[50%] right-15px translate-y-[-50%]">
                     <Icon v-if="fullscreen" class="cursor-pointer is-hover !h-54px mr-10px"
@@ -117,13 +107,13 @@ const { SchemaField } = createSchemaField({
 const client = new ProfileServiceProxy(undefined, axios)
 
 const onSubmit = async (value: any) => {
-  await client.myProfilePUT(UpdateProfileDto.fromJS(value))
+  await client.update(UpdateProfileDto.fromJS(value))
   ElMessage.success(t('common.modifySuccess'))
   show.value = false
 }
 
 onMounted(async () => {
-  var profile = await client.myProfileGET()
+  var profile = await client.get()
   // formily init value
   form.setInitialValues(profile)
 })

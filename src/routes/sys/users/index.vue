@@ -3,15 +3,15 @@
     <template #listActions>
       <el-button type="primary" @click="showAdd()">{{
         t('common.create')
-        }}</el-button>
+      }}</el-button>
     </template>
     <template #columnActions="{ row }">
       <el-button @click="showEdit(row)" type="primary">{{
         t('common.edit')
-        }}</el-button>
+      }}</el-button>
       <el-button @click="showDetail(row)" type="success">{{
         t('common.detail')
-        }}</el-button>
+      }}</el-button>
       <el-popconfirm :title="t('common.confirmDelete')" @confirm="del(row)">
         <template #reference>
           <el-button type="danger">{{ t('common.delete') }}</el-button>
@@ -143,7 +143,7 @@ const getData: QueryListHander<IdentityUserDto> = async ({
   maxResultCount,
   updateList
 }) => {
-  const { totalCount, items } = await client.usersGET2(
+  const { totalCount, items } = await client.getList(
     queryForm.filter,
     'CreationTime desc',
     unref(skipCount),
@@ -174,8 +174,7 @@ const showDetail = (row: any) => {
 }
 
 const del = async (row: any) => {
-  const client = new UserServiceProxy(undefined, axios)
-  await client.usersDELETE(row.id)
+  await client.delete(row.id)
   list.value.reload()
 }
 

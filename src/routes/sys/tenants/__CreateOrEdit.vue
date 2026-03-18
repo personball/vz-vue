@@ -1,17 +1,7 @@
 <template>
-  <el-dialog
-    v-model="show"
-    width="600px"
-    destroy-on-close
-    lock-scroll
-    draggable
-    top="0"
-    :close-on-click-modal="false"
-  >
+  <el-dialog v-model="show" width="600px" destroy-on-close lock-scroll draggable top="0" :close-on-click-modal="false">
     <template #header>
-      <div
-        class="flex justify-between items-center h-54px pl-15px pr-15px relative"
-      >
+      <div class="flex justify-between items-center h-54px pl-15px pr-15px relative">
         {{ t('common.' + mode) }}
       </div>
     </template>
@@ -132,9 +122,9 @@ if (props.mode !== 'create') {
 const onSubmit = async (value: any) => {
   const client = new TenantServiceProxy(undefined, axios)
   if (props.mode === 'create') {
-    await client.tenantsPOST(TenantCreateDto.fromJS(value))
+    await client.create(TenantCreateDto.fromJS(value))
   } else {
-    await client.tenantsPUT(props.data.id, TenantUpdateDto.fromJS(value))
+    await client.update(props.data.id, TenantUpdateDto.fromJS(value))
   }
 
   ElMessage.success(t('common.submitSuccess'))
