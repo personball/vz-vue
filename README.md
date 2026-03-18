@@ -23,6 +23,21 @@ npm run build:prod    # build production
 
 See `src/styles/element/index.scss`.
 
+### Dev Tips
+
+```bash
+
+npm run nswag # to update src/api/ServiceProxies.ts from swagger
+
+# update swagger.json for vz cli
+wget --no-check-certificate -o swagger.json https://localhost:44333/swagger/v1/swagger.json
+rm swagger.json
+mv swagger.json.1 swagger.json
+
+# use vz 
+vz g -p vue.crud --var path=/api/app/recharge-product -o ./src/routes/recharge-products/
+```
+
 ## Features
 
 - [x] [vue3.0](https://cn.vuejs.org)
