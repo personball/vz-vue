@@ -34,16 +34,16 @@
             </el-popconfirm>
         </template>
     </ListPage>
-    <CreateOrEditSys{{ tag }} v-if="openDialog" v-model="openDialog" :mode="dialogMode" :data="data"
+    <CreateOrEdit{{ tag }} v-if="openDialog" v-model="openDialog" :mode="dialogMode" :data="data"
         @submit-success="list.reload()">
-    </CreateOrEditSys{{ tag }}>
+    </CreateOrEdit{{ tag }}>
 </template>
 
 <script lang="tsx" setup>
 import { ISchema } from '@formily/vue';
 import { {{ itemType }}, {{ tag }}ServiceProxy } from '~/api/ServiceProxies';
 import type { QueryListHander } from '~/components/pages/types'
-import CreateOrEditSys{{ tag }} from "./__CreateOrEdit.vue";
+import CreateOrEdit{{ tag }} from "./__CreateOrEdit.vue";
 import { ElTag } from 'element-plus/es'
 import dayjs from 'dayjs';
 
@@ -75,7 +75,7 @@ const searchFormSchema: ISchema = {
                     'x-component':'Switch',
                     {{~end~}}
                     'x-component-props':{
-                        placeholder:'{{p.name|camel_case}}',
+                        placeholder:'{{p.description}}',
                         clearable:true,
                         style:'width:150px'
                     },
@@ -113,7 +113,7 @@ const listColumns = ref([
 const client = new {{tag}}ServiceProxy(undefined, axios)
 
 const getData: QueryListHander<{{ itemType }}> = async ({ queryForm, skipCount, maxResultCount, updateList }) => {
-     const { totalCount, items } = await client.{{tag|pluralize|string.downcase}}GET(
+     const { totalCount, items } = await client.getList(
         {{~for p in api.parameters 
             if p.name=='Sorting'|| p.name=='SkipCount'||p.name=='MaxResultCount' 
                 continue
@@ -149,8 +149,7 @@ const showDetail = (row: any) => {
 }
 
 const del = async (row: any) => {
-    const client = new {{tag}}ServiceProxy(undefined, axios)
-    await client.{{tag|pluralize|string.downcase}}DELETE(row.id)
+    await client.delete(row.id)
     list.value.reload()
 }
 
