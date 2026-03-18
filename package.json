@@ -5,7 +5,7 @@
   "version": "0.1.1",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build:stage": "vite build --mode development",
+    "build:stage": "vite build --mode stage",
     "build:prod": "vite build --mode production",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit",
@@ -29,13 +29,14 @@
     ]
   },
   "dependencies": {
-    "@formily/core": "^2.3.0",
-    "@formily/element-plus": "^1.1.0-beta.0",
-    "@formily/vue": "^2.3.0",
+    "@formily/core": "2.3.7",
+    "@formily/element-plus": "1.1.0",
+    "@formily/reactive": "2.3.7",
+    "@formily/vue": "2.3.7",
     "@vueuse/core": "^10.3.0",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
-    "element-plus": "^2.3.14",
+    "element-plus": "2.13.2",
     "mitt": "^3.0.1",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
